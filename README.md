@@ -1,3 +1,4 @@
+## Deployed Link : https://adnan-samir-steeleye-frontend-assign.netlify.app/
 # Q1. Explain what the simple List component does.
 
 ANS) React's simple List component renders an array of items as a list of clickable items from an array of items provided as a parameter.  `SingleListItem` and `List`, two of its constituent parts, cooperate to render each item in the list and control the selected item's state.
