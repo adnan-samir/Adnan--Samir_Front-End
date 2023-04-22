@@ -22,40 +22,40 @@ There are certain issues and cautions with the code that must be fixed:
    
 #  Given:
 
- const [setSelectedIndex, selectedIndex] = useState(); //incorrect sequence
+ `const [setSelectedIndex, selectedIndex] = useState(); //incorrect sequence`
  
  #  Modified:
 
-const [ selectedIndex, setSelectedIndex] = useState(); //corrected code
+`const [ selectedIndex, setSelectedIndex] = useState(); //corrected code`
 
     
  # 2. PropTypes declaration issue:
 
-  PropTypes.array(PropTypes.shapeOf(...)) is used to declare the items prop in the WrappedListComponent, but arrayOf should be used instead, and PropTypes.shape(...) should be used to describe the shape.
+  `PropTypes.array(PropTypes.shapeOf(...))` is used to declare the items prop in the WrappedListComponent, but arrayOf should be used instead, and `PropTypes.shape(...)` should be used to describe the shape.
   
   # Given :
 
-WrappedListComponent.propTypes = {
+`WrappedListComponent.propTypes = {
   items: PropTypes.array(PropTypes.shapeOf({ //ShapeOf is not a Valid Function
     text: PropTypes.string.isRequired,
   })),
  };
- 
+ `
 #  Modified:
 
-WrappedListComponent.propTypes = {
+`WrappedListComponent.propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape({ //Correct Function is ArrayOf
     text: PropTypes.string.isRequired,
   })),
  };
- 
+ `
 # 3. Issue with onClickHandler:
  
-  onClickHandler is not being used properly in WrappedSingleListItem. Instead of being supplied as a callback function, it is being invoked right away. Wrapping it inside an anonymous arrow function, as in onClick=() => onClickHandler(index), will correct this.
+  onClickHandler is not being used properly in WrappedSingleListItem. Instead of being supplied as a callback function, it is being invoked right away. Wrapping it inside an anonymous arrow function, as in `onClick=() => onClickHandler(index)`, will correct this.
   
   # Given:
 
-const WrappedSingleListItem = ({
+`const WrappedSingleListItem = ({
   index,
   isSelected,
   onClickHandler,
@@ -69,11 +69,11 @@ const WrappedSingleListItem = ({
     </li>
   );
 };
-
+`
 
  # Modified:
 
-const WrappedSingleListItem = ({
+`const WrappedSingleListItem = ({
   index,
   isSelected,
   onClickHandler,
@@ -87,20 +87,20 @@ const WrappedSingleListItem = ({
     </li>
   );
 };
-
+`
 # 4. PropType for index prop:
 
-  Although it should be defined as PropTypes.number, the index prop in WrappedSingleListItem is declared with PropTypes.number.isRequired because it is necessary for the component to operate as intended.
+  Although it should be defined as `PropTypes.number`, the index prop in WrappedSingleListItem is declared with PropTypes.number.isRequired because it is necessary for the component to operate as intended.
   
    # Given:
   
-  WrappedSingleListItem.propTypes = {
+ ` WrappedSingleListItem.propTypes = {
   index: PropTypes.number,
   isSelected: PropTypes.bool,
   onClickHandler: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
 };
-
+`
   
     # Modified:
   
